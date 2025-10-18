@@ -1,0 +1,140 @@
+/* ========================================
+   ALICE - JARDIM ENCANTADO
+   Estilos Globais Modernos
+   ======================================== */
+
+/* Reset e Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: 
+    /* Overlay colorido sobre o castelo */
+    linear-gradient(
+      180deg,
+      rgba(168, 192, 255, 0.3) 0%,
+      rgba(102, 126, 234, 0.4) 20%,
+      rgba(118, 75, 162, 0.4) 40%,
+      rgba(240, 147, 251, 0.4) 60%,
+      rgba(245, 87, 108, 0.4) 80%,
+      rgba(254, 202, 87, 0.3) 100%
+    ),
+    /* Imagem do castelo cobrindo toda a página */
+    url('/images/castelo.jpg') center top / cover no-repeat;
+  
+  background-attachment: scroll;
+  color: #ffffff;
+  overflow-x: hidden;
+  line-height: 1.6;
+  position: relative;
+  min-height: 100vh;
+  
+  /* Desktop - background fixo */
+  @media (min-width: 769px) {
+    background-attachment: fixed;
+  }
+  
+  /* Tablet - ajuste suave */
+  @media (max-width: 768px) and (min-width: 481px) {
+    background-size: auto 100%;
+    background-position: center top;
+  }
+  
+  /* Mobile/Celular - imagem com zoom 250% */
+  @media (max-width: 480px) {
+    background: 
+      /* Overlay colorido */
+      linear-gradient(
+        180deg,
+        rgba(168, 192, 255, 0.3) 0%,
+        rgba(102, 126, 234, 0.4) 20%,
+        rgba(118, 75, 162, 0.4) 40%,
+        rgba(240, 147, 251, 0.4) 60%,
+        rgba(245, 87, 108, 0.4) 80%,
+        rgba(254, 202, 87, 0.3) 100%
+      ),
+      /* Imagem do castelo - zoom 250% */
+      url('/images/castelo.jpg') center top / 300% auto no-repeat,
+      /* Cor de fundo para preencher os lados */
+      linear-gradient(
+        180deg,
+        #a8c0ff 0%,
+        #667eea 25%,
+        #764ba2 50%,
+        #f093fb 75%,
+        #f5576c 100%
+      );
+    background-attachment: scroll;
+  }
+}
+
+/* Animações globais */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) translateX(3px) rotate(0.5deg);
+  }
+  50% {
+    transform: translateY(-12px) translateX(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-6px) translateX(-2px) rotate(-0.3deg);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+@keyframes rotate3D {
+  0% { transform: perspective(1000px) rotateY(0deg) rotateX(0deg); }
+  50% { transform: perspective(1000px) rotateY(180deg) rotateX(5deg); }
+  100% { transform: perspective(1000px) rotateY(360deg) rotateX(0deg); }
+}
+
+@keyframes float3D {
+  0%, 100% {
+    transform: perspective(800px) translateZ(0px) translateY(0px) rotateX(0deg) rotateY(0deg);
+  }
+  25% {
+    transform: perspective(800px) translateZ(50px) translateY(-20px) rotateX(5deg) rotateY(5deg);
+  }
+  50% {
+    transform: perspective(800px) translateZ(30px) translateY(-30px) rotateX(-3deg) rotateY(10deg);
+  }
+  75% {
+    transform: perspective(800px) translateZ(60px) translateY(-15px) rotateX(7deg) rotateY(-5deg);
+  }
+}
+
+@keyframes pulse3D {
+  0%, 100% {
+    transform: scale(1) translateZ(0);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    transform: scale(1.05) translateZ(30px);
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.5);
+  }
+}

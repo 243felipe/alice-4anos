@@ -1,0 +1,237 @@
+<!-- Container de partículas animadas -->
+<div class="particles-container" id="particles"></div>
+
+<!-- Hero Section - Tela inicial -->
+<header class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <div class="hero-name-container">
+        <div class="hero-name-wrapper">
+          <span class="hero-name">
+            <span class="letter-with-crown">A</span>lice
+          </span>
+          
+        </div>
+      </div>
+      <span class="hero-subtitle">
+        <span>VAI FAZER</span>
+      </span>
+      <span class="hero-age">4 Anos!</span>
+    </h1>
+    
+    <br>
+    <br>
+    
+    
+    
+    <br>
+    <br>
+    
+    <!-- Mini Galeria de Fotos -->
+    <div class="hero-gallery">
+      @for (photo of photos; track photo.src) {
+        <div class="hero-gallery-item">
+          <div class="hero-photo-wrapper">
+            <img [src]="photo.src" [alt]="photo.alt" class="hero-photo" loading="lazy">
+          </div>
+          <p class="hero-photo-title">{{ photo.label }}</p>
+        </div>
+      }
+    </div>
+    
+    <div class="hero-decoration">
+      <br>
+      <br>
+    </div>
+
+    <p class="hero-description">
+      Alice convida você e sua família para uma aventura no Jardim Encantado!
+    </p>
+  </div>
+  
+</header>
+
+<main>
+  <!-- Seção de Contagem Regressiva -->
+  <section class="countdown-section">
+    <div class="container">
+      <h2 class="section-title">Contagem Regressiva</h2>
+      <p class="section-subtitle">Faltam apenas</p>
+      <div class="countdown">
+        <div class="countdown-item">
+          <span class="countdown-number">{{ padNumber(countdown().days) }}</span>
+          <span class="countdown-label">Dias</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number">{{ padNumber(countdown().hours) }}</span>
+          <span class="countdown-label">Horas</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number">{{ padNumber(countdown().minutes) }}</span>
+          <span class="countdown-label">Minutos</span>
+        </div>
+        <div class="countdown-item">
+          <span class="countdown-number">{{ padNumber(countdown().seconds) }}</span>
+          <span class="countdown-label">Segundos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detalhes do Evento -->
+  <section class="event-details">
+    <div class="container">
+      <h2 class="section-title">Detalhes do Local</h2>
+      <div class="details-grid">
+        <div class="detail-card">
+          
+          <h3>Data e Horário</h3>
+          <p>04 de Dezembro de 2025</p>
+          <span class="detail-subtitle">Quinta-feira às 19:30 horas</span>
+          <span class="detail-subtitle">⏰ Não se atrase!</span>
+        </div>
+        <div class="detail-card">
+          
+          <h3>Local</h3>
+          <p>Salão de Festas</p>
+          <span class="detail-subtitle">Av. Miguel Sutil, 5549 - Quilombo, Cuiabá - MT</span>
+        </div>
+        <div class="detail-card">
+          
+          <h3>Como Chegar</h3>
+          <a href="https://maps.app.goo.gl/qWp4U15vL2soA5ws9" target="_blank" rel="noopener noreferrer" class="btn-location">
+            <span>Acessar Localização</span>
+          </a>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulário de Confirmação -->
+  <section class="confirmation-section">
+    <div class="container">
+      <h2 class="section-title">Confirme sua Presença</h2>
+      
+      <form [formGroup]="confirmForm" (ngSubmit)="onSubmit()" class="confirm-form">
+        <div class="form-group">
+          <label for="nome">Nome Completo</label>
+          <input type="text" id="nome" formControlName="nome" placeholder="Digite seu nome" required>
+        </div>
+
+        <div class="form-group">
+          <label>Vai comparecer?</label>
+          <div class="radio-group">
+            <label class="radio-label radio-sim">
+              <input type="radio" formControlName="presenca" value="Sim">
+              
+              <span class="radio-text">Sim, estarei lá!</span>
+            </label>
+            <label class="radio-label radio-nao">
+              <input type="radio" formControlName="presenca" value="Não">
+              
+              <span class="radio-text">Não poderei ir</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Quantas pessoas virão?</label>
+          
+          <!-- Contadores -->
+          <div class="counter-group">
+            <!-- Contador de Adultos -->
+            <div class="counter-item">
+              <label class="counter-label">Adultos</label>
+              <div class="counter-controls">
+                <button type="button" class="counter-btn" (click)="decrementAdultos()" [disabled]="adultos() <= 1">−</button>
+                <input type="number" class="counter-input" [value]="adultos()" readonly>
+                <button type="button" class="counter-btn" (click)="incrementAdultos()" [disabled]="adultos() >= 20">+</button>
+              </div>
+            </div>
+            
+            <!-- Contador de Crianças 0-4 anos -->
+            <div class="counter-item">
+              <label class="counter-label">Crianças (0-4 anos)</label>
+              <div class="counter-controls">
+                <button type="button" class="counter-btn" (click)="decrementCriancas0a4()" [disabled]="criancas0a4() <= 0">−</button>
+                <input type="number" class="counter-input" [value]="criancas0a4()" readonly>
+                <button type="button" class="counter-btn" (click)="incrementCriancas0a4()" [disabled]="criancas0a4() >= 20">+</button>
+              </div>
+            </div>
+            
+            <!-- Contador de Crianças 5+ anos -->
+            <div class="counter-item">
+              <label class="counter-label">Crianças (5+ anos)</label>
+              <div class="counter-controls">
+                <button type="button" class="counter-btn" (click)="decrementCriancas5plus()" [disabled]="criancas5plus() <= 0">−</button>
+                <input type="number" class="counter-input" [value]="criancas5plus()" readonly>
+                <button type="button" class="counter-btn" (click)="incrementCriancas5plus()" [disabled]="criancas5plus() >= 20">+</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Total de pessoas -->
+          <div class="total-pessoas">
+            <span class="total-label">Total de pessoas:</span>
+            <span class="total-number">{{ totalPessoas() }}</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="observacao">Observações (Opcional)</label>
+          <textarea id="observacao" formControlName="observacao" placeholder="Caso tenha algum imprevisto, nos avise aqui!"></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" [disabled]="isSubmitting()">
+          <span class="btn-text">
+            @if (isSubmitting()) {
+              Enviando... 📧
+            } @else {
+              Enviar Confirmação
+            }
+          </span>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Mensagem Final -->
+  <section class="final-message">
+    <div class="container">
+      <div class="message-card">
+        <h2>Esperamos por Você!</h2>
+        <p>Será uma festa mágica e inesquecível no jardim encantado da Alice!</p>
+        <p class="message-signature">
+          Com carinho,<br>
+          mamãe Inghrid, papai Felipe e Alice
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Modal de Sucesso -->
+@if (showSuccessModal()) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-icon" [class.confirmed]="isConfirmed()">
+        {{ isConfirmed() ? '✓' : 'ℹ' }}
+      </div>
+      
+      <h2>{{ isConfirmed() ? 'Confirmação Enviada!' : 'Resposta Recebida' }}</h2>
+      
+      <p>
+        @if (isConfirmed()) {
+          Suas informações foram enviadas com sucesso!<br><br>
+          <strong>Te vemos lá na festa da Alice!</strong>
+        } @else {
+          Que pena que você não poderá vir!<br><br>
+          <strong>Sentiremos sua falta na festa da Alice!</strong>
+        }
+      </p>
+      
+      <button class="modal-btn" (click)="closeModal()">OK</button>
+    </div>
+  </div>
+}
