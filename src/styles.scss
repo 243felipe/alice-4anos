@@ -48,7 +48,7 @@ body {
     background-position: center top;
   }
   
-  /* Mobile/Celular - imagem com zoom 250% */
+  /* Mobile/Celular - 3 imagens empilhadas com fade suave */
   @media (max-width: 480px) {
     background: 
       /* Overlay colorido */
@@ -61,8 +61,41 @@ body {
         rgba(245, 87, 108, 0.4) 80%,
         rgba(254, 202, 87, 0.3) 100%
       ),
-      /* Imagem do castelo - zoom 250% */
-      url('/images/castelo.jpg') center top / 300% auto no-repeat,
+      /* Máscara de fade suave nas transições */
+      linear-gradient(
+        180deg,
+        transparent 0vh,
+        transparent 85vh,
+        rgba(0, 0, 0, 0.1) 95vh,
+        rgba(0, 0, 0, 0.15) 100vh,
+        rgba(0, 0, 0, 0.1) 105vh,
+        transparent 115vh,
+        transparent 185vh,
+        rgba(0, 0, 0, 0.1) 195vh,
+        rgba(0, 0, 0, 0.15) 200vh,
+        rgba(0, 0, 0, 0.1) 205vh,
+        transparent 215vh,
+        transparent 285vh,
+        rgba(0, 0, 0, 0.1) 295vh,
+        rgba(0, 0, 0, 0.15) 300vh,
+        rgba(0, 0, 0, 0.1) 305vh,
+        transparent 315vh,
+        transparent 385vh,
+        rgba(0, 0, 0, 0.1) 395vh,
+        rgba(0, 0, 0, 0.15) 400vh,
+        rgba(0, 0, 0, 0.1) 405vh,
+        transparent 415vh
+      ),
+      /* Quinta imagem - wallpaper5.jpg (400vh para baixo) */
+      // url('/images/wallpaper5.jpg') center 400vh / 300% auto no-repeat,
+      // /* Quarta imagem - wallpaper4.jpg (300vh para baixo) */
+      // url('/images/wallpaper4.jpg') center 300vh / 300% auto no-repeat,
+      // /* Terceira imagem - wallpaper3.jpg (200vh para baixo) */
+      // url('/images/wallpaper3.jpg') center 200vh / 300% auto no-repeat,
+      // /* Segunda imagem - wallpaper2.jpg (100vh para baixo) */
+      // url('/images/nuvem.jpg') center 100vh / 1000% auto no-repeat,
+      /* Primeira imagem - castelo.jpg (topo) */
+      url('/images/casteloMar.png') center 0vh / 100% auto no-repeat,
       /* Cor de fundo para preencher os lados */
       linear-gradient(
         180deg,
